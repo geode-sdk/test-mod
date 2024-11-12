@@ -1,18 +1,20 @@
 #include <Geode/loader/SettingV3.hpp>
 #include <Geode/loader/Mod.hpp>
+#include <Geode/binding/ButtonSprite.hpp>
+#include <Geode/binding/FLAlertLayer.hpp>
 
 using namespace geode::prelude;
 
 class MyButtonSettingV3 : public SettingV3 {
 public:
-    static Result<std::shared_ptr<MyButtonSettingV3>> parse(std::string const& key, std::string const& modID, matjson::Value const& json) {
+    static Result<std::shared_ptr<SettingV3>> parse(std::string const& key, std::string const& modID, matjson::Value const& json) {
         auto res = std::make_shared<MyButtonSettingV3>();
         auto root = checkJson(json, "MyButtonSettingV3");
         res->init(key, modID, root);
         res->parseNameAndDescription(root);
         res->parseEnableIf(root);
         root.checkUnknownKeys();
-        return root.ok(res);
+        return root.ok(std::static_pointer_cast<SettingV3>(res));
     }
 
     bool load(matjson::Value const& json) override {
