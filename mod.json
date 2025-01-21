@@ -1,5 +1,5 @@
 {
-	"geode": "4.0.0",
+	"geode": "4.2.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -11,6 +11,9 @@
 	"version": "v1.0.0",
 	"developer": "Geode Team",
 	"description": "Mod for Testing Geode Features",
+	"dependencies": {
+		"geode.node-ids": "1.17.0"
+	},
 	"settings": {
 		"section-bools": {
 			"type": "title",
@@ -361,6 +364,30 @@
 			"default": true,
 			"name": "Toggle #1 to Enable",
 			"enable-if": "setting:geode.test-mod/test-enable-if"
+		},
+		"test-should-be-enabled-and": {
+			"type": "bool",
+			"default": true,
+			"name": "Toggle #1 and #2 to Enable",
+			"enable-if": "test-enable-if && test-enable-if-2"
+		},
+		"test-should-be-enabled-or": {
+			"type": "bool",
+			"default": true,
+			"name": "Toggle #1 or #2 to Enable",
+			"enable-if": "test-enable-if || test-enable-if-2"
+		},
+		"test-should-be-enabled-not": {
+			"type": "bool",
+			"default": true,
+			"name": "Detoggle #1 to Enable",
+			"enable-if": "!test-enable-if"
+		},
+		"test-should-be-enabled-and-not": {
+			"type": "bool",
+			"default": true,
+			"name": "Detoggle #1 and #2 to Enable",
+			"enable-if": "!test-enable-if && !test-enable-if-2"
 		},
 		"test-should-be-enabled-other-mod": {
 			"type": "bool",
